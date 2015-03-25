@@ -13,7 +13,7 @@ params:
   BOSH_AWS_SECRET_ACCESS_KEY:
   BOSH_LITE_PRIVATE_KEY:
   BOSH_LITE_SECURITY_GROUP: bosh-stemcell
-  BOSH_LITE_KEYPAIR: bosh
+  BOSH_LITE_KEYPAIR: bosh-lite
 
 run:
   path: bosh-lite/ci/bats-aws.sh
