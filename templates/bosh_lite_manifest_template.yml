@@ -89,6 +89,7 @@ properties:
     encryption: false
     enable_snapshots: true
     max_tasks: 100
+    max_upload_size: 10000m
     db:
       user: bosh
       password: bosh-password
