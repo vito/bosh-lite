@@ -23,12 +23,13 @@ clean_vagrant() {
 
 # todo box_type vs provider
 box_add_and_vagrant_up() {
-  box_type=$1
-  provider=$2
-  box_version=$3
+  box_file=$1
+  box_type=$2
+  provider=$3
+  box_version=$4
 
   vagrant box add \
-    bosh-lite-${box_type}-ubuntu-trusty-${box_version}.box \
+    $box_file \
     --name bosh-lite-ubuntu-trusty-${box_type}-${box_version} \
     --force
 

@@ -5,7 +5,9 @@ set -e -x
 source $(dirname $0)/lib/vagrant.sh
 source $(dirname $0)/lib/vbox.sh
 source $(dirname $0)/lib/bats.sh
-source $(dirname $0)/lib/box.sh
+
+box_version=$(cat box-version/number)
+box_file=$(ls $PWD/box/*.box)
 
 cd bosh-lite
 
@@ -22,9 +24,7 @@ cat Vagrantfile
 sed -i'' -e "s/192.168.50.4/$private_net_ip/" bin/add-route
 cat bin/add-route
 
-download_box $BOX_TYPE $box_version
-
-box_add_and_vagrant_up $BOX_TYPE $PROVIDER $box_version
+box_add_and_vagrant_up $box_file $BOX_TYPE $PROVIDER $box_version
 
 ./bin/add-route || true
 

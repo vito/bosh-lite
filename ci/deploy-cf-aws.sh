@@ -3,20 +3,18 @@
 set -x -e
 
 source $(dirname $0)/lib/vagrant.sh
-source $(dirname $0)/lib/box.sh
+
+box_version=$(cat box-version/number)
+box_file=$(ls $PWD/box/*.box)
 
 cd bosh-lite
-
-box_version=$(box_version)
 
 sed -e "s/BOSH_LITE_CANDIDATE_BUILD_NUMBER/$box_version/" ci/Vagrantfile.aws > Vagrantfile
 cat Vagrantfile
 
 set_up_vagrant_private_key
 
-download_box aws $box_version
-
-box_add_and_vagrant_up aws aws $box_version
+box_add_and_vagrant_up $box_file aws aws $box_version
 
 # todo remove installation
 gem install bosh_cli --no-ri --no-rdoc

@@ -2,11 +2,9 @@
 
 set -e -x
 
-source $(dirname $0)/lib/box.sh
+box_version=$(cat box-version/number)
 
 cd bosh-lite
-
-box_version=$(box_version)
 
 export AWS_ACCESS_KEY_ID=$BOSH_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$BOSH_AWS_SECRET_ACCESS_KEY
@@ -23,5 +21,3 @@ sleep 60
 aws ec2 modify-image-attribute \
   --image-id $ami \
   --launch-permission "{\"Add\": [{\"Group\":\"all\"}]}"
-
-upload_box aws $box_version

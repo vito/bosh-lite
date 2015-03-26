@@ -7,10 +7,9 @@ image: docker:///cppforlife/bosh-lite-ci
 
 inputs:
 - name: bosh-lite
+- name: box-version
 
 params:
-  BOSH_LITE_CANDIDATE_BUILD_NUMBER:
-
   BOSH_RELEASE_VERSION:
   WARDEN_RELEASE_VERSION:
 
